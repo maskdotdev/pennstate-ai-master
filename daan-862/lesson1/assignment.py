@@ -6,7 +6,7 @@ import numpy as np
 
 
 def q1():
-    L1 = []
+    L1: list[int] = []
 
     np.random.seed(56)
 
@@ -24,14 +24,15 @@ def q1():
     print(f"there are {len(unique_values)} unique values")
 
     # Create a dictionary with the unique items in L1 as dictionary keys and their count as the dictionary values. (20 points)
-    count_dict = dict(Counter(L1))
+    count_dict: dict[int, int] = dict(Counter(L1))
     print("count_dict: ", count_dict)
 
     # Which value appears most frequently? The manual comparison is not acceptable. (10 points)
-    max_value = max(count_dict, key=count_dict.get)
+    max_value = max(count_dict, key=lambda k: count_dict[k])
     print(f"the value that appears most frequently is: {max_value}")
 
     # it would be much nicer doing something like:
+    # if counter is discourage for this assignment we can just iterate over the keys and values
     key, count = Counter(L1).most_common(1)[0]
     print(f"the value that appears most frequently is: {key} with a count of {count}")
 
@@ -87,10 +88,13 @@ def q2():
     # Use a while loop to calculate the sum of the even numbers in L2. (10 points)
 
     ### SOLUTION ###
-    sum_even = 0
-    for i in L2:
-        if i % 2 == 0:
-            sum_even += i
+    sum_even: int = 0
+    i: int = 0
+    while i < len(L2):
+        if L2[i] % 2 == 0:
+            sum_even += L2[i]
+        i += 1
+
     # pythonic way to do the above:
     # sum_even = sum(i for i in L2 if i % 2 == 0)
     print(f"the sum of the even numbers in L2 is: {sum_even}")
@@ -122,7 +126,8 @@ def q2():
 # Implement the function pow(x, n), which calculates x raised to the power n (xn). Please don't use x**n. (20pts)
 ### SOLUTION ###
 def manual_pow(base: int, exponent: int) -> int | float:
-    """calculates x raised to the power n
+    """loops n times based on exponent and multiplies the result by base
+    if exponent is negative, the result is divided by base
     args:
         base: int
         exponent: int
@@ -143,8 +148,6 @@ def q3():
     # Calculate pow(2, 10) and pow(3, -3). (10 pts)
     print(f"pow(2, 10) is: {manual_pow(2, 10)}")
     print(f"pow(3, -3) is: {manual_pow(3, -3)}")
-    print(f"pow(5, 0) is: {manual_pow(5, 0)}")
-    print(f"pow(3, -2) is: {manual_pow(3, -2)}")
 
 
 ### END SOLUTION ###
