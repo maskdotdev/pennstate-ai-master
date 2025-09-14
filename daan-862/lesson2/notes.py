@@ -43,3 +43,5 @@ print("raw data", data)
 print("data with bobs", data[names == "Bob"])
 print("data with joes", data[names == "Joe"])
 print("data with wills", data[names == "Will"])
+
+np.exp()
